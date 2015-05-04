@@ -57,10 +57,10 @@ $ID = $_SESSION['UserNameID'];
         <li role="presentation"><a href="profile.php">Profile</a></li>
         <li role="presentation" class="active"><a href="#">Edit Profile</a></li>
         <li role="presentation"><a href="publicaciones.php">Publications</a></li>
-	        <li role="presentation"><a href="#">Presentations</a></li>
-        <li role="presentation"><a href="#">Supports</a></li>
-        <li role="presentation"><a href="#">Graduate Students Committees</a></li>
-        <li role="presentation"><a href="#">Student and Post-doctoral training</a></li>
+	        <li role="presentation"><a href="presentaciones.php">Presentations</a></li>
+        <li role="presentation"><a href="support.php">Supports</a></li>
+        <li role="presentation"><a href="grad.php">Graduate Students Committees</a></li>
+        <li role="presentation"><a href="training.php">Student and Post-doctoral training</a></li>
          </ul>
 </div>
 </div>

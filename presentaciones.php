@@ -1,6 +1,6 @@
 <?php
 session_start();
- $servername = "localhost";
+$servername = "localhost";
 $username = "cdejesus";
 $password = "chrisoname@gmail.com";
 $dbname = "cdejesus";
@@ -16,7 +16,6 @@ $password = $_SESSION['pass'];
 $ID = $_SESSION['UserNameID'];
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,7 +35,47 @@ $ID = $_SESSION['UserNameID'];
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
- <body>
+
+<?php
+//Echo session variables that were set on previous page
+//echo "Username " . $_SESSION["userName"] . ".<br>";
+//echo "pass " . $_SESSION["pass"] . ".";
+//echo "IDProf es" . $_SESSION["UserNameID"] . ".<br>";
+function AllPres($con){
+             //   session_start();
+              //  echo  $_SESSION['UserNameID'];
+                $sql_temp = "Select * from presentaciones where UserNameID = %u;";
+		$query = sprintf($sql_temp, $_SESSION['UserNameID']);
+                //echo $query;
+                $result = $con->query($query);
+                 //       echo "entre a AddSub <br>";
+		echo "<table class='table'> ";
+		echo "<th> Title </th>";
+		echo "<th> Year </th>";
+		echo "<th> Type of Presentation </th>";
+		echo "<th> Authors </th>";
+		echo "<th> Type of Meeting </th>";
+		echo "<th> Title of Meeting </th>";
+		echo "<th>  </th>";
+		while($row = $result->fetch_assoc()) {
+  			echo "<tr>";
+			echo "<td>".$row["title"]."</td>" ;
+			echo "<td>".$row["year"]."</td>" ;
+			echo "<td>".$row["typepres"]."</td>" ;
+			echo "<td>".$row["author"]."</td>" ;
+			echo "<td>".$row["typemeeting"]."</td>" ;
+			echo "<td>".$row["titlemeeting"]."</td>" ;
+  		        echo "<td><form> <input type='number' name='present_id' value='".$row["present_id"]."' hidden><button type='submit' class='btn btn-danger' formmethod='post' formaction='conecDelPres.php' name='submit' value='submit'>Delete</button></form></td>";
+
+			echo "</tr>" ;
+        		}
+		echo "</table>";
+
+                }
+//AllPubs($con);
+?>
+</body>
+  <body>
 <center>
    <h1>Annual Reports</h1>
 <div class="row">
@@ -44,8 +83,8 @@ $ID = $_SESSION['UserNameID'];
      <ul class="nav nav-pills">
         <li role="presentation"><a href="profile.php">Profile</a></li>
         <li role="presentation"><a href="editprofile.php">Edit Profile</a></li>
-	<li role="presentation" class="active"><a href="publicaciones.php">Publications</a></li>
-	<li role="presentation"><a href="presentaciones.php">Presentations</a></li>
+	<li role="presentation" ><a href="publicaciones.php">Publications</a></li>
+	<li role="presentation" class="active"><a href="presentaciones.php">Presentations</a></li>
 	<li role="presentation"><a href="support.php">Supports</a></li>
 	<li role="presentation"><a href="grad.php">Graduate Students Committees</a></li>
 	<li role="presentation"><a href="training.php">Student and Post-doctoral training</a></li>
@@ -55,59 +94,17 @@ $ID = $_SESSION['UserNameID'];
 
 <nav>
   <ul class="pager">
-    <li><a href="conecNewPub.php">Add New Publication</a></li>
+    <li><a href="conecNewPres.php">Add New Presentation</a></li>
   </ul>
 </nav>
-
-<div class="col-xs-2">
-<div class ="container center_div">
-
-<form name="input" action="pubinput.php" method="post">
-<center>
-<label for="nombre">Title</label>
-</center>
-<input type="text" class="form-control" name='titlePub' id="titlePub"  placeholder="Ex. Bees">
-<center>
-<label for="apellido">Year of Publication</label>
-</center>
-<input type="text" class="form-control" name='yearPub' id="yearPub" placeholder="Ex. 2013">
-<center>
-<label for="start">Authors</label>
-</center>
-<input type="text" class="form-control" name='authorPub' id="authorPub"  placeholder="Ex. 08/08">
-<center>
-<label for="nombre">Information</label>
-</center>
-<input type="text" class="form-control" name='infoPub' id="infoPub"  placeholder="Ex. Bees">
-<center>
-<label for="rank">Publication Status</label>
-</center>
-<input type="text" class="form-control" name='pubStatus' id="pubStatus"  placeholder="Ex. Pending">
-<center>
-<label for="rank">Type of Publication</label>
-</center>
-<input type="text" class="form-control" name='typePub' id="typePub"  placeholder="Ex. Pending">
-<center>
-<label for="timerank">Undegraduate Students involved</label>
-</center>
-<input type="text" class="form-control" name='subgradPub' id="subgradPub"  placeholder="Ex. 6">
-<center>
-<label for="timerank">Graduate Students involved</label>
-</center>
-<input type="text" class="form-control" name='gradPub' id="gradPub"  placeholder="Ex. 6">
-<br><br>
-
-<button type="submit" class="btn btn-primary" name='submit' value="submit">Submit</button>
-
-</div>
-</div>
-
-</form>
-
+<?php
+AllPres($con);
+?>
  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
+
 

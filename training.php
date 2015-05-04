@@ -41,35 +41,35 @@ $ID = $_SESSION['UserNameID'];
 //echo "Username " . $_SESSION["userName"] . ".<br>";
 //echo "pass " . $_SESSION["pass"] . ".";
 //echo "IDProf es" . $_SESSION["UserNameID"] . ".<br>";
-function AllPubs($con){
+function AllPres($con){
              //   session_start();
               //  echo  $_SESSION['UserNameID'];
-                $sql_temp = "Select * from publicaciones where UserNameID = %u;";
+                $sql_temp = "Select * from training where UserNameID = %u;";
 		$query = sprintf($sql_temp, $_SESSION['UserNameID']);
                 //echo $query;
                 $result = $con->query($query);
                  //       echo "entre a AddSub <br>";
 		echo "<table class='table'> ";
-		echo "<th> Title </th>";
-		echo "<th> Year </th>";
-		echo "<th> Type </th>";
-		echo "<th> Authors </th>";
-		echo "<th> Status </th>";
-		echo "<th> Graduate Students </th>";
-		echo "<th> Undergrad Students </th>";
-		echo "<th> Information </th>";
-		echo "<th>  </th>";
+		echo "<th> Academic Level </th>";
+		echo "<th> Institution </th>";
+		echo "<th> Year - Concentration </th>";
+		echo "<th> Name, Last Name </th>";
+		echo "<th> Position </th>";
+		echo "<th> Mechanism </th>";
+	  echo "<th> Funding Source</th>";
+    echo "<th> Activities (paper, presentation, other)</th>";
+    echo "<th>  </th>";
 		while($row = $result->fetch_assoc()) {
   			echo "<tr>";
-        		echo "<td>".$row["titlePub"]."</td>" ;
-			echo "<td>".$row["yearPub"]."</td>" ;
-			echo "<td>".$row["typePub"]."</td>" ;
-			echo "<td>".$row["authorPub"]."</td>" ;
-			echo "<td>".$row["pubStatus"]."</td>" ;
-			echo "<td>".$row["gradPub"]."</td>" ;
-			echo "<td>".$row["subgradPub"]."</td>" ;
-			echo "<td>".$row["infoPub"]."</td>" ;
-  		        echo "<td><form> <input type='number' name='public_id' value='".$row["public_id"]."' hidden><button type='submit' class='btn btn-danger' formmethod='post' formaction='conecDelPub.php' name='submit' value='submit'>Delete</button></form></td>";
+			echo "<td>".$row["academic"]."</td>" ;
+			echo "<td>".$row["institution"]."</td>" ;
+			echo "<td>".$row["year"]."</td>" ;
+			echo "<td>".$row["name"]."</td>" ;
+      echo "<td>".$row["position"]."</td>" ;
+			echo "<td>".$row["mechanism"]."</td>" ;
+			echo "<td>".$row["funding"]."</td>" ;
+  		echo "<td>".$row["activities"]."</td>" ;        
+              echo "<td><form> <input type='number' name='training_id' value='".$row["training_id"]."' hidden><button type='submit' class='btn btn-danger' formmethod='post' formaction='conecDelTraining.php' name='submit' value='submit'>Delete</button></form></td>";
 
 			echo "</tr>" ;
         		}
@@ -87,22 +87,22 @@ function AllPubs($con){
      <ul class="nav nav-pills">
         <li role="presentation"><a href="profile.php">Profile</a></li>
         <li role="presentation"><a href="editprofile.php">Edit Profile</a></li>
-	<li role="presentation" class="active"><a href="publicaciones.php">Publications</a></li>
-	<li role="presentation"><a href="presentaciones.php">Presentations</a></li>
-	<li role="presentation"><a href="support.php">Supports</a></li>
+	<li role="presentation" ><a href="publicaciones.php">Publications</a></li>
+	<li role="presentation" ><a href="presentaciones.php">Presentations</a></li>
+	<li role="presentation" ><a href="support.php">Supports</a></li>
 	<li role="presentation"><a href="grad.php">Graduate Students Committees</a></li>
-	<li role="presentation"><a href="training.php">Student and Post-doctoral training</a></li>
+	<li role="presentation"class="active"><a href="training.php">Student and Post-doctoral training</a></li>
          </ul>
 </div>
 </div>
 
 <nav>
   <ul class="pager">
-    <li><a href="conecNewPub.php">Add New Publication</a></li>
+    <li><a href="conecNewTraining.php">Add New Student's training</a></li>
   </ul>
 </nav>
 <?php
-AllPubs($con);
+AllPres($con);
 ?>
  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -110,4 +110,6 @@ AllPubs($con);
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
+
+
 

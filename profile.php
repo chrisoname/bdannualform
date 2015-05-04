@@ -1,6 +1,8 @@
 <?php
 session_start();
- $servername = "localhost";
+//	require_once("dompdf/dompdf_config.inc.php");
+
+$servername = "localhost";
 $username = "cdejesus";
 $password = "chrisoname@gmail.com";
 $dbname = "cdejesus";
@@ -19,31 +21,19 @@ $ID = $_SESSION['UserNameID'];
 $sql_temp = "Select * from UserName where UserNameID =  %u ";		
 $query = sprintf($sql_temp, $_SESSION['UserNameID']);
 $result = $con->query($query);
-//echo $_SESSION['userName'];
-//echo $_SESSION['UserNameID'];
-//echo $ID;
-//echo "nombre del tipo";
 if($row = $result->fetch_assoc()){
-//			echo "Nombre del tipo"; 
-//			echo $row['nombreProf'];			
 			if(($row['nombreProf'] != NULL) AND ($row['apellidoProf'])!= NULL) { 
+				
 					$_SESSION['UserNameID'] = $row['UserNameID'];
-				//	echo $row['nombreProf'];
-				//	echo $row['apellidoProf'];
 					$NOMBRE = $row['nombreProf'];
 					$APELLIDO = $row['apellidoProf'];
 					$RANK = $row['rank'];
 					$TIMERANK = $row['timerank'];
 					$START = $row['start'];	
-	//				echo $NOMBRE, $APELLIDO, $RANK, $TIMERANK, $RANK, $START;
-				//	header("location:profile.php");	
-     				//	echo "SUCCESSFULLY LOGIN TO USER PROFILE PAGE...";
-						 }
-				else{
+		}		else{
 				header("location:editprofile.php");
-}
-}
-//session_start();
+						}
+			}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,14 +54,6 @@ if($row = $result->fetch_assoc()){
     <![endif]-->
   </head>
 
-<?php
-// Echo session variables that were set on previous page
-//echo "Favorite color is " . $_SESSION["userName"] . ".<br>";
-//echo "Favorite animal is " . $_SESSION["pass"] . ".";
-//echo "IDProf es" . $_SESSION["UserNameID"] . ".<br>";
-
-
-?>
 </body>
   <body>
 <center> 
@@ -79,22 +61,23 @@ if($row = $result->fetch_assoc()){
 <div class="row">
   <div class="span12 centered-pills">
      <ul class="nav nav-pills">
-        <li role="presentation"class="active"><a href="#">Profile</a></li>
+        <li role="presentation"class="active"><a href="profile.php">Profile</a></li>
 	<li role="presentation"><a href="editprofile.php">Edit Profile</a></li>
 	<li role="presentation"><a href="publicaciones.php">Publications</a></li>
-	<li role="presentation"><a href="#">Presentations<span class="badge"> </span></a></li>
-	<li role="presentation"><a href="#">Supports<span class="badge"> </span></a></li>
-	<li role="presentation"><a href="#">Graduate Students Committees<span class="badge"> </span></a></li>
-	<li role="presentation"><a href="#">Student and Post-doctoral training<span class="badge"> </span></a></li>
+	<li role="presentation"><a href="presentaciones.php">Presentations<span class="badge"></span></a></li>
+	<li role="presentation"><a href="support.php">Supports<span class="badge"></span></a></li>
+	<li role="presentation"><a href="grad.php">Graduate Students Committees<span class="badge"></span></a></li>
+	<li role="presentation"><a href="training.php">Student and Post-doctoral training<span class="badge"></span></a></li>
 	 </ul>
 </div>
 </div>
 <?php
-echo "<h1>" ; echo $NOMBRE,' ', $APELLIDO; echo "</h1>";
-echo "<h2>" ; echo $RANK ; echo "</h2>";
-
-
+echo "<h1>".$NOMBRE," ", $APELLIDO."</h1>";
+echo "<h2>".$RANK."<h2>";
 ?>
+
+
+
  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
