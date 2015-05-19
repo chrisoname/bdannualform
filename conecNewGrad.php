@@ -1,6 +1,6 @@
 <?php
 session_start();
- $servername = "localhost";
+$servername = "localhost";
 $username = "cdejesus";
 $password = "chrisoname@gmail.com";
 $dbname = "informes";
@@ -44,10 +44,10 @@ $ID = $_SESSION['UserNameID'];
      <ul class="nav nav-pills">
         <li role="presentation"><a href="profile.php">Profile</a></li>
         <li role="presentation"><a href="editprofile.php">Edit Profile</a></li>
-	<li role="presentation" class="active"><a href="publicaciones.php">Publications</a></li>
+	<li role="presentation"><a href="publicaciones.php">Publications</a></li>
 	<li role="presentation"><a href="presentaciones.php">Presentations</a></li>
 	<li role="presentation"><a href="support.php">Supports</a></li>
-	<li role="presentation"><a href="grad.php">Graduate Students Committees</a></li>
+	<li role="presentation"class="active"><a href="grad.php">Graduate Students Committees</a></li>
 	<li role="presentation"><a href="training.php">Student and Post-doctoral training</a></li>
          </ul>
 </div>
@@ -55,48 +55,35 @@ $ID = $_SESSION['UserNameID'];
 
 <nav>
   <ul class="pager">
-    <li><a href="conecNewPub.php">Add New Publication</a></li>
+    <li><a href="conecNewGrad.php">Add New Graduate Student Committee</a></li>
   </ul>
 </nav>
 
 <div class="col-xs-2">
 <div class ="container center_div">
 
-<form name="input" action="pubinput.php" method="post">
+<form name="input" action="gradinput.php" method="post">
 <center>
-<label for="nombre">Title</label>
+<label for="academic">Academic Level</label>
 </center>
-<input type="text" class="form-control" name='titlePub' id="titlePub"  placeholder="Ex. Bees">
+<input type="text" class="form-control" name='academic' id="academic"  placeholder="Ex. Bees">
 <center>
-<label for="apellido">Year of Publication</label>
+<label for="university">University</label>
 </center>
-<input type="text" class="form-control" name='yearPub' id="yearPub" placeholder="Ex. 2013">
+<input type="text" class="form-control" name='university' id="university" placeholder="Ex. 2013">
 <center>
-<label for="start">Authors</label>
+<label for="name">Name, Last Name</label>
 </center>
-<input type="text" class="form-control" name='authorPub' id="authorPub"  placeholder="Ex. 08/08">
+<input type="text" class="form-control" name='name' id="name"  placeholder="Ex. Bees">
 <center>
-<label for="nombre">Information</label>
+<label for="role">Role</label>
 </center>
-<input type="text" class="form-control" name='infoPub' id="infoPub"  placeholder="Ex. Bees">
+<input type="text" class="form-control" name='role' id="role"  placeholder="Ex. Pending">
 <center>
-<label for="rank">Publication Status</label>
+<label for="duration">Duration</label>
 </center>
-<input type="text" class="form-control" name='pubStatus' id="pubStatus"  placeholder="Ex. Pending">
-<center>
-<label for="rank">Type of Publication</label>
-</center>
-<input type="text" class="form-control" name='typePub' id="typePub"  placeholder="Ex. Pending">
-<center>
-<label for="timerank">Undegraduate Students involved</label>
-</center>
-<input type="text" class="form-control" name='subgradPub' id="subgradPub"  placeholder="Ex. 6">
-<center>
-<label for="timerank">Graduate Students involved</label>
-</center>
-<input type="text" class="form-control" name='gradPub' id="gradPub"  placeholder="Ex. 6">
+<input type="text" class="form-control" name='duration' id="duration"  placeholder="Ex. Pending">
 <br><br>
-
 <button type="submit" class="btn btn-primary" name='submit' value="submit">Submit</button>
 
 </div>
@@ -110,4 +97,7 @@ $ID = $_SESSION['UserNameID'];
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
+
+
+
 
