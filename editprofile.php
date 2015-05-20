@@ -14,6 +14,9 @@ if ($con->connect_error) {
 $username = $_SESSION['userName'];
 $password = $_SESSION['pass'];
 $ID = $_SESSION['UserNameID'];
+if($username == ''){
+        header("location:index.php");
+}
 		$sql_temp = "Select * from UserName where UserNameId = %u";
                 $query = sprintf($sql_temp, $_SESSION['UserNameID']);
                 $result = $con->query($query);
@@ -61,6 +64,7 @@ $ID = $_SESSION['UserNameID'];
         <li role="presentation"><a href="support.php">Supports</a></li>
         <li role="presentation"><a href="grad.php">Graduate Students Committees</a></li>
         <li role="presentation"><a href="training.php">Student and Post-doctoral training</a></li>
+<li role="presentation"><a href="logout.php">Log Out<span class="badge"></span></a></li>
          </ul>
 </div>
 </div>

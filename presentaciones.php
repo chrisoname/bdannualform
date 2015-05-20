@@ -14,7 +14,9 @@ if ($con->connect_error) {
 $username = $_SESSION['userName'];
 $password = $_SESSION['pass'];
 $ID = $_SESSION['UserNameID'];
-
+if($username == ''){
+        header("location:index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -88,6 +90,7 @@ function AllPres($con){
 	<li role="presentation"><a href="support.php">Supports</a></li>
 	<li role="presentation"><a href="grad.php">Graduate Students Committees</a></li>
 	<li role="presentation"><a href="training.php">Student and Post-doctoral training</a></li>
+	<li role="presentation"><a href="logout.php">Log Out<span class="badge"></span></a></li>
          </ul>
 </div>
 </div>

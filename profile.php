@@ -17,13 +17,25 @@ $username = $_SESSION['userName'];
 $password = $_SESSION['pass'];
 $ID = $_SESSION['UserNameID'];
 
+if($username == ''){
+        header("location:index.php");
+}
+
+
+/*
+header('Content-Type: text/csv; charset=utf-8');
+header('Content-Disposition: attachment; filename=spreadsheet.csv');
+$data = fopen('php://output', 'w');
+fputcsv($data,array('ID','Email','Password'));
+*/
 
 $sql_temp = "Select * from UserName where UserNameID =  %u ";		
 $query = sprintf($sql_temp, $_SESSION['UserNameID']);
 $result = $con->query($query);
+
 if($row = $result->fetch_assoc()){
 			if(($row['nombreProf'] != NULL) AND ($row['apellidoProf'])!= NULL) { 
-				
+//					fputcsv($data, $row);	
 					$_SESSION['UserNameID'] = $row['UserNameID'];
 					$NOMBRE = $row['nombreProf'];
 					$APELLIDO = $row['apellidoProf'];
@@ -34,6 +46,8 @@ if($row = $result->fetch_assoc()){
 				header("location:editprofile.php");
 						}
 			}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,6 +82,7 @@ if($row = $result->fetch_assoc()){
 	<li role="presentation"><a href="support.php">Supports<span class="badge"></span></a></li>
 	<li role="presentation"><a href="grad.php">Graduate Students Committees<span class="badge"></span></a></li>
 	<li role="presentation"><a href="training.php">Student and Post-doctoral training<span class="badge"></span></a></li>
+	<li role="presentation"><a href="logout.php">Log Out<span class="badge"></span></a></li>
 	 </ul>
 </div>
 </div>
@@ -75,7 +90,9 @@ if($row = $result->fetch_assoc()){
 echo "<h1>".$NOMBRE," ", $APELLIDO."</h1>";
 echo "<h2>".$RANK."<h2>";
 ?>
-
+<a href="download.php"><button type="button" class="btn btn-default btn-lg"></a>
+ <a href="download.php"><span class="glyphicon glyphicon-save-file" aria-hidden="true"></span></a> Download Report
+</button>
 
 
  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
